@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from todolist.views import ProjectModelViewSet, TodoModelViewSet
-from users.views import UserModelViewSet
-
+from todolist.views import ProjectModelViewSet, TodoModelViewSet, ProjectListAPIView, ProjectRetrieveAPIView, \
+    ProjectCreateAPIView, ProjectUpdateAPIView, ProjectDestroyAPIView, TodoListAPIView, TodoRetrieveAPIView, \
+    TodoCreateAPIView, TodoUpdateAPIView, TodoDestroyAPIView, ProjectCustomDjangoFilterViewSet
+# from todolist.views import ProjectModelViewSet, TodoModelViewSet
+from users.views import UserListAPIView, UserUpdateAPIView, UserModelViewSet, UserRetrieveAPIView
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
@@ -30,4 +32,19 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    path('api/user/', UserListAPIView.as_view()),
+    path('api/user/<int:pk>/', UserRetrieveAPIView.as_view()),
+    path('api/user/update/<int:pk>/', UserUpdateAPIView.as_view()),
+    path('project/', include(router.urls)),
+    path('api/project/list/', ProjectListAPIView.as_view()),
+    path('api/project/retrieve/<int:pk>/', ProjectRetrieveAPIView.as_view()),
+    path('api/project/create/', ProjectCreateAPIView.as_view()),
+    path('api/project/update/<int:pk>/', ProjectUpdateAPIView.as_view()),
+    path('api/project/destroy/<int:pk>/', ProjectDestroyAPIView.as_view()),
+    path('api/todo/list/', TodoListAPIView.as_view()),
+    path('api/todo/retrieve/<int:pk>/', TodoRetrieveAPIView.as_view()),
+    path('api/todo/create/', TodoCreateAPIView.as_view()),
+    path('api/todo/update/<int:pk>/', TodoUpdateAPIView.as_view()),
+    path('api/todo/destroy/<int:pk>/', TodoDestroyAPIView.as_view()),
+    # path('api/project/filters/<str:title>/', ProjectCustomDjangoFilterViewSet.as_view())
 ]

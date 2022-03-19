@@ -2,6 +2,7 @@ import json, os
 
 from django.core.management.base import BaseCommand
 from users.models import User
+from todolist.models import Project, Todo
 
 
 JSON_PATH = "users/json"
@@ -15,6 +16,7 @@ def load_from_json(file_name):
 class Command(BaseCommand):
     def handle(self, *args, **options):
         users = load_from_json("users")
+
 
         User.objects.all().delete()
         for user in users:
