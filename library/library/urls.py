@@ -21,6 +21,7 @@ from todolist.views import ProjectModelViewSet, TodoModelViewSet, ProjectListAPI
     TodoCreateAPIView, TodoUpdateAPIView, TodoDestroyAPIView, ProjectCustomDjangoFilterViewSet
 # from todolist.views import ProjectModelViewSet, TodoModelViewSet
 from users.views import UserListAPIView, UserUpdateAPIView, UserModelViewSet, UserRetrieveAPIView
+from rest_framework.authtoken import views
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
@@ -46,5 +47,7 @@ urlpatterns = [
     path('api/todo/create/', TodoCreateAPIView.as_view()),
     path('api/todo/update/<int:pk>/', TodoUpdateAPIView.as_view()),
     path('api/todo/destroy/<int:pk>/', TodoDestroyAPIView.as_view()),
-    # path('api/project/filters/<str:title>/', ProjectCustomDjangoFilterViewSet.as_view())
+    # path('api/project/filters/<str:title>/', ProjectCustomDjangoFilterViewSet.as_view()),
+    path('api-token-auth/', views.obtain_auth_token)
+
 ]

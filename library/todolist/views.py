@@ -4,6 +4,8 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.views import APIView
 
 from .filters import ProjectFilter
 from .models import Project, Todo
@@ -18,6 +20,7 @@ class ProjectModelViewSet(ModelViewSet):
 
 
 class ProjectListAPIView(ListAPIView):
+    permission_classes = [AllowAny]
     renderer_classes = [JSONRenderer]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -93,6 +96,7 @@ class TodoModelViewSet(ModelViewSet):
     
     
 class TodoListAPIView(ListAPIView):
+    permission_classes = [AllowAny]
     renderer_classes = [JSONRenderer]
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
@@ -122,12 +126,12 @@ class TodoDestroyAPIView(DestroyAPIView):
     serializer_class = TodoSerializer
     
     
-class TodoLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 2
-
-
-class TodoLimitOffsetPaginatonViewSet(viewsets.ModelViewSet):
-    queryset = Todo.objects.all()
-    serializer_class = TodoSerializer
-    pagination_class = TodoLimitOffsetPagination
+# class TodoLimitOffsetPagination(LimitOffsetPagination):
+#     default_limit = 2
+#
+#
+# class TodoLimitOffsetPaginatonViewSet(viewsets.ModelViewSet):
+#     queryset = Todo.objects.all()
+#     serializer_class = TodoSerializer
+#     pagination_class = TodoLimitOffsetPagination
 
