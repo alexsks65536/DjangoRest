@@ -1,0 +1,42 @@
+[
+  {
+    "name":"DJANGO REST FRAMEWORK",
+    "repository":"https://github.com/tomchristie/django-rest-framework"
+  },
+  {
+    "name":"DJANGO-REST-FRAMEWORK-SIMPLEJWT",
+    "repository":"https://github.com/jazzband/djangorestframework-simplejwt"
+  },
+  {
+    "name":"DRF-YASG",
+    "repository":"https://github.com/axnsan12/drf-yasg"
+  },
+  {
+    "name":"DJOSER",
+    "repository":"https://github.com/sunscrapers/djoser"
+  },
+  {
+    "name":"DJANGO OAUTH TOOLKIT",
+    "repository":"https://github.com/evonove/django-oauth-toolkit"
+  },
+  {
+    "name":"DRF-EXTENSIONS",
+    "repository":"https://github.com/chibisov/drf-extensions"
+  },
+  {
+    "name":"COOKIECUTTER-DJANGO-REST",
+    "repository":"https://github.com/agconti/cookiecutter-django-rest"
+  },
+  {
+    "name":"DJANGO REST FRAMEWORK JSON API",
+    "repository":"https://github.com/django-json-api/django-rest-framework-json-api"
+  },
+  {
+    "name":"DJANGO-REST-KNOX",
+    "repository":"https://github.com/James1345/django-rest-knox"
+  },
+  {
+    "name":"DJANGO-REST-FRAMEWORK-GIS",
+    "repository":"https://github.com/djangonauts/django-rest-framework-gis"
+  }
+]
