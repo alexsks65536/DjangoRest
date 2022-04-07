@@ -5,7 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import ModelViewSet
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserSerializerSuperuser, UserSerializerStaff
 
 
 class UserModelViewSet(ModelViewSet):
@@ -16,9 +16,16 @@ class UserModelViewSet(ModelViewSet):
 class UserListAPIView(ListAPIView):
     """Предоставляет метод get и выводит список данных из выборки queryset."""
     permission_classes = [AllowAny]
-    renderer_classes = [JSONRenderer]
+    # renderer_classes = [JSONRenderer]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_serializer_class(self):
+        if self.request.version == 'is_superuser':
+            return UserSerializerSuperuser
+        if self.request.version == 'is_staff':
+            return UserSerializerStaff
+        return UserSerializer
 
 
 class UserRetrieveAPIView(RetrieveAPIView):

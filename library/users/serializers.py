@@ -13,3 +13,15 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+
+class UserSerializerSuperuser(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'firstname', 'lastname', 'email')
+
+
+class UserSerializerStaff(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
