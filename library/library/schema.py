@@ -56,15 +56,21 @@ class Query(graphene.ObjectType):
 
 class UserMutation(graphene.Mutation):
     class Arguments:
+        username = graphene.String(required=True)
+        firstname = graphene.String(required=True)
+        lastname = graphene.String(required=True)
         email = graphene.String(required=True)
         id = graphene.ID()
 
     user = graphene.Field(UserType)
 
     @classmethod
-    def mutate(cls, root, info, email, id):
+    def mutate(cls, root, info, username, firstname, lastname, email, id):
         user = User.objects.get(pk=id)
         user.email = email
+        user.username = username
+        user.firstname = firstname
+        user.lastname = lastname
         user.save()
         return UserMutation(user=user)
 
