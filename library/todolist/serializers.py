@@ -14,7 +14,7 @@ from users.serializers import UserSerializer
 
 
 class ProjectSerializer(ModelSerializer):
-    user = UserSerializer(many=True)
+    user = UserSerializer()
 
     class Meta:
         model = Project

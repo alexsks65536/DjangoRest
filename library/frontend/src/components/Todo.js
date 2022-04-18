@@ -1,17 +1,20 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-
-const TodoItem = ({item}) => {
+const TodoItem = ({item, deleteTodo}) => {
    return (
        <tr>
             <td>
                {item.id}
            </td>
-           <td>
+           <td width='20%'>
                {item.title}
            </td>
-           <td>
+           <td width='40%'>
                {item.content}
+           </td>
+           <td>
+               {item.user.username}
            </td>
            <td>
                {item.created}
@@ -19,13 +22,14 @@ const TodoItem = ({item}) => {
            <td>
                {item.isactive}
            </td>
+           <td><button onClick={()=>deleteTodo(item.id)}type='button'>Delete</button></td>
        </tr>
    )
 }
 
-
-const TodoList = ({items}) => {
+const TodoList = ({items, deleteTodo}) => {
    return (
+    <div>
        <table>
             <th>
                id
@@ -36,17 +40,20 @@ const TodoList = ({items}) => {
            <th>
                Content
            </th>
+           <th> User </th>
            <th>
                Created
            </th>
            <th>
                IsActive
            </th>
-           {items.map((item) => <TodoItem item={item} />)}
+           <th> </th>
+           {items.map((item) => <TodoItem item={item} deleteTodo={deleteTodo}/>)}
        </table>
+       <Link to='/todolist/create'>Create</Link>
+     </div>
    )
 }
 
-
-export default TodoList
+export default TodoList;
 

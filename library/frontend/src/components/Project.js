@@ -1,40 +1,40 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-const ProjectItem = ({item}) => {
+const ProjectItem = ({item, deleteProject}) => {
    return (
+    <tbody>
        <tr>
-            <td>
+           <td>
                <Link to={`project/${item.id}`}>{item.id}</Link>
            </td>
-           <td>
-               {item.name}
-           </td>
-           <td>
-               {item.repository}
-           </td>
-           <td>
-               {item.user}
-           </td>
+           <td>{item.name}</td>
+           <td>{item.repository}</td>
+           <td>{item.user.username}</td>
+           <td><button onClick={()=>deleteProject(item.id)} type='button'>Delete</button></td>
        </tr>
+    </tbody>
    )
 }
 
-const ProjectList = ({items}) => {
+const ProjectList = ({items, deleteProject}) => {
    return (
+    <div>
        <table>
-           <th>
-               Name
-           </th>
-           <th>
-               Repository
-           </th>
-           <th>
-               User
-           </th>
-           {items.map((item) => <ProjectItem item={item} />)}
+
+                <tr>
+                   <th>id</th>
+                   <th>Name</th>
+                   <th>Repository</th>
+                   <th>User</th>
+                   <th> </th>
+                </tr>
+                   {items.map((item) => <ProjectItem item={item} deleteProject={deleteProject}/>)}
+
        </table>
+       <Link to='/projects/create'>Create</Link>
+    </div>
    )
 }
 
-export default ProjectList
+export default ProjectList;

@@ -9,6 +9,7 @@ from .serializers import UserSerializer, UserSerializerSuperuser, UserSerializer
 
 
 class UserModelViewSet(ModelViewSet):
+    permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

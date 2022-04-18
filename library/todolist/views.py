@@ -4,7 +4,7 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
 from .filters import ProjectFilter
@@ -13,7 +13,7 @@ from .serializers import ProjectSerializer, TodoSerializer
 
 
 class ProjectModelViewSet(ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     filter_backends = [filters.SearchFilter]
@@ -92,7 +92,7 @@ class ProjectCustomDjangoFilterViewSet(viewsets.ModelViewSet):
 
 
 class TodoModelViewSet(ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
     
